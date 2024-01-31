@@ -1,3 +1,5 @@
-export interface AppContextType {
+import { WeatherType } from "./weatherType";
 
+export interface AppContextType {
+    weatherData: WeatherType;
 };

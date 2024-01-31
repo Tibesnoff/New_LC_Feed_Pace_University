@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 const Header = () => {
     
     return (
-        <div className="h-1/5 border-2 border-stone-950">{weather()}</div>
+        <div className="h-1/5 border-2 border-stone-950"></div>
     )
 }
 
