@@ -10,7 +10,7 @@ const WeatherBanner = () => {
     const currentForcast = () => {
         const period = weatherData.periods[0];
         return (
-            <div className="h-full w-1/4 flex flex-col items-center border-2">
+            <div className="h-full w-1/4 flex flex-col items-center">
                 <Text classNameProps="font-bold text-sm line-clamp-1" content="Current Weather in Pleasentville"/>
                 <Text classNameProps="text-sm line-clamp-1" content={period.shortForecast}/>
                 <Text classNameProps="text-sm" content={period.temperature + "°"}/>
@@ -18,9 +18,10 @@ const WeatherBanner = () => {
         )
     }
 
-    const dayForcast = (period: Period) => {
+    const dayForcast = (period: Period, index: number) => {
+        console.log(period.id);
         return (
-            <div className="h-full w-2/6 ml-2 mr-2 flex flex-col items-center border-2">
+            <div className={`h-full w-2/6 ml-2 mr-2 flex flex-col items-center ${index % 2 === 0?"bg-blue-600":"bg-blue-500"}`}>
                 <Text classNameProps="font-bold text-sm" content={period.name}/>
                 <Text classNameProps="text-sm line-clamp-1" content={period.shortForecast}/>
                 <Text classNameProps="text-sm" content={period.temperature + "°"}/>
@@ -30,9 +31,9 @@ const WeatherBanner = () => {
 
     const weekForcast = () => {
         return (
-            <div className="h-full w-3/4 pl-4 pr-4 flex flex-row justify-end border-2">
+            <div className="h-full w-3/4 pl-4 pr-4 flex flex-row justify-end">
                 {
-                    weatherData.periods && weatherData.periods.map((period: Period, index: number) => index !== 0 && dayForcast(period))
+                    weatherData.periods && weatherData.periods.map((period: Period, index: number) => index !== 0 && dayForcast(period, index))
                 }
             </div>
         )
