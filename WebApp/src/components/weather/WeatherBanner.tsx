@@ -10,8 +10,8 @@ const WeatherBanner = () => {
     const currentForcast = () => {
         const period = weatherData.periods[0];
         return (
-            <div className="h-full w-2/6 ml-2 mr-2 flex flex-col items-center border-2">
-                <Text classNameProps="font-bold text-sm" content={period.name}/>
+            <div className="h-full w-1/4 flex flex-col items-center border-2">
+                <Text classNameProps="font-bold text-sm line-clamp-1" content="Current Weather in Pleasentville"/>
                 <Text classNameProps="text-sm line-clamp-1" content={period.shortForecast}/>
                 <Text classNameProps="text-sm" content={period.temperature + "°"}/>
             </div>
