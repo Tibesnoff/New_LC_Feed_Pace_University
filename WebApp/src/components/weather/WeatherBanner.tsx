@@ -11,15 +11,14 @@ const WeatherBanner = () => {
         const period = weatherData.periods[0];
         return (
             <div className="h-full w-1/4 flex flex-col items-center">
-                <Text classNameProps="font-bold text-sm line-clamp-1" content="Current Weather in Pleasentville"/>
-                <Text classNameProps="text-sm line-clamp-1" content={period.shortForecast}/>
-                <Text classNameProps="text-sm" content={period.temperature + "°"}/>
+                {period.detailedForecast.split('. ').map((sentence:string, index:number) => (
+                index < 3 && <Text key={index} classNameProps="text-sm line-clamp-2 text-center" content={sentence}/>
+            ))}
             </div>
         )
     }
 
     const dayForcast = (period: Period, index: number) => {
-        console.log(period.id);
         return (
             <div className={`h-full w-2/6 ml-2 mr-2 flex flex-col items-center ${index % 2 === 0?"bg-blue-600":"bg-blue-500"}`}>
                 <Text classNameProps="font-bold text-sm" content={period.name}/>
@@ -39,13 +38,32 @@ const WeatherBanner = () => {
         )
     }
 
-    return (
-        <div className="h-28 border-4 flex flex-col bg-blue-900 p-2 pt-0 items-center">
-            <Text classNameProps="font-bold text-xl" content="Weather"/>
+    const forcast = () =>{
+        return (
             <div className="h-full w-full pl-4 pr-4 flex flex-row justify-center bg-blue-700">
                 {weatherData.periods && currentForcast()}
                 {weekForcast()}
             </div>
+        )
+    }
+
+    const titles = () => {
+        return (
+            <div className="h-fit w-full flex-row flex pl-2 pr-2"> 
+                <div className="h-fit w-1/4 text-center">
+                    <Text classNameProps="font-bold text-xl" content="Current Weather in Pleasentville"/>
+                </div>
+                <div className="h-fit w-3/4 text-center">
+                    <Text classNameProps="font-bold text-xl" content="Weekly Weather"/>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div className="h-28 m-2 flex flex-col bg-blue-900 p-2 pt-0 items-center">
+            {titles()}
+            {forcast()}
         </div>
     )
 }
