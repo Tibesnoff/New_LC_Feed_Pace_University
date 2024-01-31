@@ -15,16 +15,19 @@ const GlobalState:  React.FC<PropsWithChildren> = ({ children }) => {
                         const properties = json.properties;
                         setWeatherData({
                             updateTime: properties.updateTime,
-                            periods: properties.periods.map((period: any) => {
-                                return {
-                                    id: period.number,
-                                    name: period.name,
-                                    startTime: period.startTime,
-                                    detailedForecast: period.detailedForecast,
-                                    temperature: period.temperature,
-                                    shortForecast: period.shortForecast
-                                }
-                            })
+                            periods: properties
+                                .periods
+                                .map((period: any) => {
+                                    return {
+                                        id: period.number,
+                                        name: period.name,
+                                        startTime: period.startTime,
+                                        detailedForecast: period.detailedForecast,
+                                        temperature: period.temperature,
+                                        shortForecast: period.shortForecast
+                                    }
+                                })
+                                .filter((period: any) => !period.name.includes("Night") && !period.name.includes("Tonight"))
                         });
                     }
                     else {
@@ -64,7 +67,7 @@ const GlobalState:  React.FC<PropsWithChildren> = ({ children }) => {
      }, [fetchWeatherLink])
 
     return (
-        <context.Provider value={{weatherData}}>
+        <context.Provider value={{weatherData: weatherData}}>
             {children}
         </context.Provider>
     );

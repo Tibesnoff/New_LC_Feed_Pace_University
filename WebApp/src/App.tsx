@@ -5,7 +5,7 @@ import GlobalState from './context/GlobalState';
 function App() {
   return (
     <GlobalState>
-      <div className='h-screen'>{Header()}</div>
+      <div className='h-screen'><Header/></div>
     </GlobalState>
   );
 }

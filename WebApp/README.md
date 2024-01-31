@@ -8,3 +8,7 @@
 | -------- | ------- |
 | Yarn Start | Starts the project |
 | Yarn Install | Installs node dependencies |
+
+## Tailwinds CSS is installed in this project
+
+[Tailwinds CSS Docs](https://tailwindcss.com/docs/installation)
