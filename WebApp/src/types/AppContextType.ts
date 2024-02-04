@@ -1,5 +1,5 @@
-import { WeatherType } from "./weatherType";
+import { WeatherType } from './weatherType';
 
 export interface AppContextType {
-    weatherData: WeatherType;
-};
+  weatherData: WeatherType;
+}

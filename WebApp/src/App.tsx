@@ -6,7 +6,9 @@ import Section from './components/middle/section';
 function App() {
   return (
     <GlobalState>
-      <div className='h-screen'><Header/><Section/></div>
+      <div className='h-screen bg-sky-300'>
+        <Header />
+      </div>
     </GlobalState>
   );
 }
