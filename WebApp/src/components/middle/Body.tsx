@@ -8,7 +8,7 @@ const Body = () => {
   const { currentDate, currentTime } = React.useContext(context) as AppContextType;
 
   return (
-    <div className='flex flex-row place-content-center h-2/3 w-full'>
+    <div className='flex flex-row place-content-center h-2/4 w-full'>
       <div className='h-full w-1/2 bg-blue-900 flex flex-col justify-center text-center rounded-l-md'>
         <Text classNameProps='text-4xl font-bold' content={currentDate} />
         <Text classNameProps='text-4xl font-bold' content={currentTime} />
