@@ -5,6 +5,9 @@ import { Period, WeatherType } from '../types/weatherType';
 const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
   const [weatherData, setWeatherData] = useState({} as WeatherType);
 
+  const [currentDate, setCurrentDate] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
+
   const fetchWeatherData = useCallback(async (gridDataLink: string) => {
     await fetch(gridDataLink).then(async (r) => {
       try {
@@ -69,7 +72,38 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
     fetchWeatherLink();
   }, [fetchWeatherLink]);
 
-  return <context.Provider value={{ weatherData: weatherData }}>{children}</context.Provider>;
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    setCurrentDate(formattedDate);
+  }, []);
+
+  useEffect(() => {
+    const updateCurrentTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+
+      setCurrentTime(`${+hours < 12 ? hours : +hours - 12}:${minutes}:${seconds}`);
+    };
+
+    const intervalId = setInterval(updateCurrentTime, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <context.Provider
+      value={{
+        weatherData: weatherData,
+        currentDate: currentDate,
+        currentTime: currentTime
+      }}
+    >
+      {children}
+    </context.Provider>
+  );
 };
 
 export default GlobalState;

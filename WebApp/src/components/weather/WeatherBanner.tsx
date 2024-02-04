@@ -83,7 +83,7 @@ const WeatherBanner = () => {
   };
 
   return (
-    <div className='h-30 m-2 flex flex-col bg-blue-900 p-2 pt-0 items-center rounded-md'>
+    <div className='h-30 mt-2 flex flex-col bg-blue-900 p-2 pt-0 items-center rounded-md'>
       {titles()}
       {weatherData.periods && forcast()}
     </div>
