@@ -74,6 +74,7 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     const today = new Date();
+
     const formattedDate = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
     setCurrentDate(formattedDate);
   }, []);
@@ -84,11 +85,14 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const seconds = now.getSeconds().toString().padStart(2, '0');
+      setCurrentTime(`${+hours <= 12 ? hours : +hours - 12}:${minutes}:${seconds}`);
 
-      setCurrentTime(`${+hours < 12 ? hours : +hours - 12}:${minutes}:${seconds}`);
+      // so it updates the date every day without having to refresh the page
+      const formattedDate = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+      setCurrentDate(formattedDate);
     };
 
-    const intervalId = setInterval(updateCurrentTime, 1000);
+    const intervalId = setInterval(updateCurrentTime, 500);
 
     return () => clearInterval(intervalId);
   }, []);
