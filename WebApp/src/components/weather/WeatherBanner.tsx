@@ -73,7 +73,7 @@ const WeatherBanner = () => {
     return (
       <div className='h-fit w-full flex-row flex pl-2 pr-2 mb-2'>
         <div className='h-fit w-1/4 text-center'>
-          <Text classNameProps='font-bold text-xl' content='Current Weather in Pleasentville' />
+          <Text classNameProps='font-bold text-xl' content='Current Weather in Pleasantville' />
         </div>
         <div className='h-fit w-3/4 text-center'>
           <Text classNameProps='font-bold text-xl' content='Weekly Weather' />
