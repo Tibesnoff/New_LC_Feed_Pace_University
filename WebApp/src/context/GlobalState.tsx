@@ -8,6 +8,17 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
 
+  const [youTubeLink, setYouTubeLink] = useState('DHUnz4dyb54');
+
+  const changeYouTubeLink = (link: string) => {
+    const regex = /(?:v=)([^&]+)/;
+    const match = link.match(regex);
+    if (match) {
+      const videoId = match[1];
+      setYouTubeLink(videoId);
+    }
+  };
+
   const fetchWeatherData = useCallback(async (gridDataLink: string) => {
     await fetch(gridDataLink).then(async (r) => {
       try {
@@ -105,7 +116,9 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
       value={{
         weatherData: weatherData,
         currentDate: currentDate,
-        currentTime: currentTime
+        currentTime: currentTime,
+        youTubeLink,
+        changeYouTubeLink
       }}
     >
       {children}

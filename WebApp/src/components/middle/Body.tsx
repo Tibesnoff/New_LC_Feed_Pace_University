@@ -13,7 +13,7 @@ const Body = () => {
         <Text classNameProps='text-4xl font-bold' content={currentDate} />
         <Text classNameProps='text-4xl font-bold' content={currentTime} />
       </div>
-      <div className='h-full w-1/2'>
+      <div className='h-full w-1/2 bg-blue-900'>
         <YouTubePlayer videoId='DHUnz4dyb54' />
       </div>
     </div>
