@@ -1,17 +1,17 @@
 import React from 'react';
-import Header from './components/header/Header';
 import GlobalState from './context/GlobalState';
-import Body from './components/middle/Body';
-import Ticker from './components/stockticker/Ticker';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
     <GlobalState>
-      <div className='h-screen bg-sky-300 p-2'>
-        <Header />
-        <Body />
-        <Ticker />
-      </div>
+      <Router>
+        <Routes>
+          <Route path='/' element={Home()} />
+          <Route path='*' element={<div>404 Page Not Found</div>} />
+        </Routes>
+      </Router>
     </GlobalState>
   );
 }
