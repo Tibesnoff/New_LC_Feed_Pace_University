@@ -6,7 +6,7 @@
 - [Non-Technical Documentation](#non-technical-documentation)
     - [Where is the app deployed?](#where-is-the-app-deployed)
     - [Features](#features)
-    - [Who worked / is working on this project](#who-worked--is-working-on-this-project)
+    - [Who worked/is working on this project](#who-worked--is-working-on-this-project)
 - [Technical Documentation](#technical-documentation)
     - [Getting Started](#getting-started)
     - [Commands - Yarn](#commands---yarn)
@@ -31,7 +31,7 @@ The app is deployed in the AWS cloud using AWS Amplify. The cost for this Cloud 
 
 [PLV LC Home](https://main.d3j94bg6n7pdek.amplifyapp.com/plv)
 * Welcome title
-* Weather banner with current and weekly forcast plv weather
+* Weather banner with current and weekly forecast PLV weather
 * Time and Date
 * Live stream video
 * Stock ticker
@@ -40,16 +40,16 @@ The app is deployed in the AWS cloud using AWS Amplify. The cost for this Cloud 
 * For now, the two pages are identical besides the naming and weather coordinates. 
 * Both pages are technically different and can be updated separately to meet the needs of each LC.
 
-### Who worked / is working on this project
-Currently the project is being worked on by PLV CS tutors. If anyone has interest in adding to the site please contact any of the PLV CS tutors or the PLV tutoring center
+### Who worked/is working on this project
+Currently, the project is being worked on by PLV CS tutors. If anyone is interested in adding to the site please contact any of the PLV CS tutors or the PLV tutoring center
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 ## Technical Documentation
 
 ### Getting Started
-1. Install Visual Studios Code or any other ide
-2. Install git and create a github profile
+1. Install Visual Studios Code or any other IDE
+2. Install git and create a GitHub profile
 3. Install node.js
 4. Install Yarn using npm
 5. Install ES Lint extension in VS Code
@@ -58,9 +58,9 @@ Currently the project is being worked on by PLV CS tutors. If anyone has interes
    <br/>(All other folders are not useful to the current WebApp and are only left in if need be)
 8. Run [yarn setup](#commands---yarn)
 9. To add to the project make sure you have created a new branch by running git checkout -b <"branch_name">
-10. When you are done adding to the project make sure you commit all git changes then create a pull request into main on github
-11. Contact another developer to review changed and merge into main
-12. AWS Amplify will automatically deploy new version when a pr is merged to main
+10. When you are done adding to the project make sure you commit all git changes then create a pull request into main on GitHub
+11. Contact another developer to review changes and merge them into main
+12. AWS Amplify will automatically deploy a new version when a PR is merged into main
 
 
 ### Commands - Yarn
@@ -73,7 +73,7 @@ Currently the project is being worked on by PLV CS tutors. If anyone has interes
 ### Commands - Git
 | Command | Description |
 | -------- | ------- |
-| git branch | See all branchs |
+| git branch | See all branches |
 | git checkout <branch_name> | Switches branch to <branch_name> |
 | git pull | Pulls data from remote branch |
 | git push | Pushes data to remote branch |
@@ -83,23 +83,23 @@ Currently the project is being worked on by PLV CS tutors. If anyone has interes
 
 ### Tailwinds CSS
 
-* Tailwinds is a component and css library used with react. We are using this library as it removes the need to create css style sheets
+* Tailwinds is a component and CSS library used with React. We are using this library as it removes the need to create CSS style sheets
 * How to use Tailwinds
   * Find an existing component (lazy way)
-  * Create your own component (fun way)
-    * Add a className prop to any existing html component using the [tailwinds css docs](https://tailwindcss.com/docs/installation)
-    * Create a component in the stylizedComponents folder
+  * Create your component (fun way)
+    * Add a className prop to any existing HTML component using the [tailwinds CSS docs](https://tailwindcss.com/docs/installation)
+    * Create a component in the stylized components folder
 
 ### .env file
 
 .end file needs to be created locally. It should have the following variables:
 
-REACT_APP_YOUTUBE_LINK={youtube unique video id}
+REACT_APP_YOUTUBE_LINK={YouTube unique video id}
 
-In AWS amplify, this is setup as an environment variable which can be changed to change the live version youtube video
+In AWS amplify, this is set as an environment variable that can be changed to change the live version YouTube video
 
 ### Global State
-Global state is tricky to use on this webapp because the current ticker keeps refreshing the components on the page and is causing bugs in global state which I cannot figure out
+Global state is tricky to use on this web app because the current ticker keeps refreshing the components on the page and is causing bugs in global state which I cannot figure out
 
 ### ES Lint
-ES Lint is setup in this project to keep the code clean and organized. ES Lint has a dedicated [yarn script](#commands---yarn) to lint the file. This command is also added to the [yarn startup](#commands---yarn) command 
+ES Lint is set up in this project to keep the code clean and organized. ES Lint has a dedicated [yarn script](#commands---yarn) to lint the file. This command is also added to the [yarn startup](#commands---yarn) command 
