@@ -27,8 +27,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "yarn lint && yarn format",
-    "setup": "echo REACT_APP_YOUTUBE_LINK=wbgRkhC3bKc > .env & yarn install & yarn lint & yarn start"
+    "lint": "eslint  --fix src/**/*.{js,jsx,ts,tsx}",
+    "format": "prettier --write .",
+    "setup": "echo REACT_APP_YOUTUBE_LINK=wbgRkhC3bKc > .env & yarn install & yarn lint & yarn format & yarn start"
   },
   "eslintConfig": {
     "extends": [

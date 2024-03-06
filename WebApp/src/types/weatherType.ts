@@ -11,3 +11,9 @@ export interface Period {
   shortForecast: string;
   temperature: number;
 }
+
+export interface highLowPeriod {
+  id: number;
+  high: number;
+  low: number;
+}

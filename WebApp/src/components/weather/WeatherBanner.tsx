@@ -2,35 +2,52 @@ import Text from '../../stylizedComponents/Text';
 import { AppContextType } from '../../types/AppContextType';
 import context from '../../context/context';
 import React, { useEffect, useState } from 'react';
-import { Period, WeatherType } from '../../types/weatherType';
+import { Period, WeatherType, highLowPeriod } from '../../types/weatherType';
 import { titleProps } from '../../types/props';
 import { lc_coordinates, lc_locations } from '../../consts/consts';
 
 const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinates.plv }: titleProps) => {
   const { fetchWeatherLink } = React.useContext(context) as AppContextType;
   const [weatherData, setWeatherData] = useState({} as WeatherType);
+  const [highLow, setHighLow] = useState([] as highLowPeriod[]);
 
   useEffect(() => {
     const fetchWeather = async () => {
-      await fetchWeatherLink(coordinates).then((d) => d && setWeatherData(d));
+      await fetchWeatherLink(coordinates).then((d) => {
+        if (d && highLow.length < 7) {
+          const periods = d.periods;
+
+          const newHighLow = periods.reduce(
+            (acc, period, index) => {
+              const isEvenIndex = index % 2 === 0;
+              if (isEvenIndex) {
+                return [
+                  ...acc,
+                  {
+                    id: period.id,
+                    high: period.temperature,
+                    low: 0
+                  }
+                ];
+              } else {
+                return acc.map((item, itemIndex) => (itemIndex === acc.length - 1 ? { ...item, low: period.temperature } : item));
+              }
+            },
+            [...highLow]
+          );
+
+          setHighLow(newHighLow);
+
+          setWeatherData({
+            updateTime: d.updateTime,
+            periods: d.periods.filter((period: Period) => !period.name.includes('Night') && !period.name.includes('Tonight'))
+          });
+        }
+      });
     };
 
-    fetchWeather();
+    weatherData.periods == undefined && fetchWeather();
   });
-
-  function getHighLow(description: string) {
-    const tempMatches = description.match(/\b\d+\b(?!\s*mph)/g);
-
-    if (!tempMatches) {
-      return { highTemp: null, lowTemp: null };
-    }
-
-    const temps = tempMatches.map(Number);
-    const highTemp = Math.max(...temps);
-    const lowTemp = Math.min(...temps);
-
-    return { highTemp, lowTemp };
-  }
 
   const currentForcast = () => {
     const period = weatherData.periods[0];
@@ -47,7 +64,6 @@ const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinat
   };
 
   const dayForcast = (period: Period, index: number) => {
-    const highLow = getHighLow(period.detailedForecast);
     return (
       <div
         key={index}
@@ -56,8 +72,8 @@ const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinat
         <Text classNameProps='font-bold text-sm' content={period.name} />
         <Text classNameProps='text-sm line-clamp-1' content={period.shortForecast} />
         <div className='flex flex-row space-x-3'>
-          <Text classNameProps='text-sm' content={`H: ${highLow.highTemp}°`} />
-          <Text classNameProps='text-sm' content={`L: ${highLow.lowTemp}°`} />
+          <Text classNameProps='text-sm' content={`H: ${highLow[index].high}°`} />
+          <Text classNameProps='text-sm' content={`L: ${highLow[index].low}°`} />
         </div>
       </div>
     );
