@@ -3,14 +3,11 @@
 ### This is a react project that will be used to display the main feed of the Pace University Learning Commons.
 
 ## Table of Contents
-- [New Pace University Learning Commons Main Feed](#new-pace-university-learning-commons-main-feed)
-    - [This is a react project that will be used to display the main feed of the Pace University Learning Commons.](#this-is-a-react-project-that-will-be-used-to-display-the-main-feed-of-the-pace-university-learning-commons)
-  - [Table of Contents](#table-of-contents)
-  - [Non-Technical Documentation](#non-technical-documentation)
+- [Non-Technical Documentation](#non-technical-documentation)
     - [Where is the app deployed?](#where-is-the-app-deployed)
     - [Features](#features)
     - [Who worked / is working on this project](#who-worked--is-working-on-this-project)
-  - [Technical Documentation](#technical-documentation)
+- [Technical Documentation](#technical-documentation)
     - [Getting Started](#getting-started)
     - [Commands - Yarn](#commands---yarn)
     - [Commands - Git](#commands---git)
