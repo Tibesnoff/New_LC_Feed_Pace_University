@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import context from './context';
-import { Period } from '../types/weatherType';
 
 const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
   const [currentDate, setCurrentDate] = useState('');
@@ -26,27 +25,25 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
           console.log(properties);
           return {
             updateTime: properties.updateTime,
-            periods: properties.periods
-              .map(
-                (period: {
-                  number: number;
-                  name: string;
-                  startTime: string;
-                  detailedForecast: string;
-                  temperature: string;
-                  shortForecast: string;
-                }) => {
-                  return {
-                    id: period.number,
-                    name: period.name,
-                    startTime: period.startTime,
-                    detailedForecast: period.detailedForecast,
-                    temperature: period.temperature,
-                    shortForecast: period.shortForecast
-                  };
-                }
-              )
-              .filter((period: Period) => !period.name.includes('Night') && !period.name.includes('Tonight'))
+            periods: properties.periods.map(
+              (period: {
+                number: number;
+                name: string;
+                startTime: string;
+                detailedForecast: string;
+                temperature: string;
+                shortForecast: string;
+              }) => {
+                return {
+                  id: period.number,
+                  name: period.name,
+                  startTime: period.startTime,
+                  detailedForecast: period.detailedForecast,
+                  temperature: period.temperature,
+                  shortForecast: period.shortForecast
+                };
+              }
+            )
           };
         } else {
           throw new Error('Error fetching data');
