@@ -1,11 +1,22 @@
 import Text from '../../stylizedComponents/Text';
 import { AppContextType } from '../../types/AppContextType';
 import context from '../../context/context';
-import React from 'react';
-import { Period } from '../../types/weatherType';
+import React, { useEffect, useState } from 'react';
+import { Period, WeatherType } from '../../types/weatherType';
+import { titleProps } from '../../types/props';
+import { lc_coordinates, lc_locations } from '../../consts/consts';
 
-const WeatherBanner = () => {
-  const { weatherData } = React.useContext(context) as AppContextType;
+const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinates.plv }: titleProps) => {
+  const { fetchWeatherLink } = React.useContext(context) as AppContextType;
+  const [weatherData, setWeatherData] = useState({} as WeatherType);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      await fetchWeatherLink(coordinates).then((d) => d && setWeatherData(d));
+    };
+
+    fetchWeather();
+  });
 
   function getHighLow(description: string) {
     const tempMatches = description.match(/\b\d+\b(?!\s*mph)/g);
@@ -73,7 +84,7 @@ const WeatherBanner = () => {
     return (
       <div className='h-fit w-full flex-row flex pl-2 pr-2 mb-2'>
         <div className='h-fit w-1/4 text-center'>
-          <Text classNameProps='font-bold text-xl' content='Current Weather in Pleasantville' />
+          <Text classNameProps='font-bold text-xl' content={`Current Weather in ${location}`} />
         </div>
         <div className='h-fit w-3/4 text-center'>
           <Text classNameProps='font-bold text-xl' content='Weekly Weather' />

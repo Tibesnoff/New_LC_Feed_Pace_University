@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import context from './context';
-import { Period, WeatherType } from '../types/weatherType';
+import { Period } from '../types/weatherType';
 
 const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
-  const [weatherData, setWeatherData] = useState({} as WeatherType);
-
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
 
@@ -20,12 +18,12 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   const fetchWeatherData = useCallback(async (gridDataLink: string) => {
-    await fetch(gridDataLink).then(async (r) => {
+    return await fetch(gridDataLink).then(async (r) => {
       try {
         if (r.ok) {
           const json = await r.json();
           const properties = json.properties;
-          setWeatherData({
+          return {
             updateTime: properties.updateTime,
             periods: properties.periods
               .map(
@@ -48,7 +46,7 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
                 }
               )
               .filter((period: Period) => !period.name.includes('Night') && !period.name.includes('Tonight'))
-          });
+          };
         } else {
           throw new Error('Error fetching data');
         }
@@ -58,9 +56,10 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const fetchWeatherLink = useCallback(async () => {
+  const fetchWeatherLink = useCallback(async (coordinates: string) => {
     let gridDataLink = null;
-    await fetch('https://api.weather.gov/points/41.12091997761644,-73.81694739810774').then(async (r) => {
+    coordinates = coordinates.replace(/\s/g, '');
+    const data = await fetch(`https://api.weather.gov/points/${coordinates}`).then(async (r) => {
       try {
         if (r.ok) {
           const json = await r.json();
@@ -68,7 +67,7 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
           if (gridDataLink === null) {
             throw new Error('No grid data');
           } else {
-            await fetchWeatherData(`${gridDataLink}/forecast`);
+            return await fetchWeatherData(`${gridDataLink}/forecast`);
           }
         } else {
           throw new Error('Error fetching data');
@@ -77,11 +76,9 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
         console.log(e);
       }
     });
-  }, [fetchWeatherData]);
 
-  useEffect(() => {
-    fetchWeatherLink();
-  }, [fetchWeatherLink]);
+    return data;
+  }, []);
 
   useEffect(() => {
     const today = new Date();
@@ -114,11 +111,11 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <context.Provider
       value={{
-        weatherData: weatherData,
         currentDate: currentDate,
         currentTime: currentTime,
         youTubeLink,
-        changeYouTubeLink
+        changeYouTubeLink,
+        fetchWeatherLink
       }}
     >
       {children}
