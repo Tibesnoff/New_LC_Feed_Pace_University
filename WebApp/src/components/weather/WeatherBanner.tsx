@@ -15,7 +15,7 @@ const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinat
       await fetchWeatherLink(coordinates).then((d) => d && setWeatherData(d));
     };
 
-    fetchWeather();
+    weatherData.periods == undefined && fetchWeather();
   });
 
   function getHighLow(description: string) {

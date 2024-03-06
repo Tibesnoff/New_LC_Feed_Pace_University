@@ -23,6 +23,7 @@ const GlobalState: React.FC<PropsWithChildren> = ({ children }) => {
         if (r.ok) {
           const json = await r.json();
           const properties = json.properties;
+          console.log(properties);
           return {
             updateTime: properties.updateTime,
             periods: properties.periods
