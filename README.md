@@ -25,18 +25,18 @@
 The app is deployed in the AWS cloud using AWS Amplify. The cost for this Cloud Compute tool is free which is the reason we deployed the app using it.
 
 ### Features
-[Home Page](URL "https://main.d3j94bg6n7pdek.amplifyapp.com/" target="_blank")
+[Home Page](https://main.d3j94bg6n7pdek.amplifyapp.com/)
 * This page features a welcome title and an image of each Pace University Campus
 * A user can click an image to be taken to that respective main feed
 
-[PLV LC Home](URL "https://main.d3j94bg6n7pdek.amplifyapp.com/plv" target="_blank")
+[PLV LC Home](https://main.d3j94bg6n7pdek.amplifyapp.com/plv)
 * Welcome title
 * Weather banner with current and weekly forcast plv weather
 * Time and Date
 * Live stream video
 * Stock ticker
 
-[NYC LC Home](URL "https://main.d3j94bg6n7pdek.amplifyapp.com/nyc" target="_blank")
+[NYC LC Home](https://main.d3j94bg6n7pdek.amplifyapp.com/nyc)
 * For now, the two pages are identical besides the naming and weather coordinates. 
 * Both pages are technically different and can be updated separately to meet the needs of each LC.
 
