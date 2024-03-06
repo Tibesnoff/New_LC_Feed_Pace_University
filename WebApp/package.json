@@ -26,7 +26,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "lint": "yarn lint && yarn format",
+    "setup": "echo REACT_APP_YOUTUBE_LINK=wbgRkhC3bKc > .env & yarn install & yarn lint & yarn start"
   },
   "eslintConfig": {
     "extends": [
