@@ -25,12 +25,12 @@ const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinat
                   ...acc,
                   {
                     id: period.id,
-                    high: period.temperature,
-                    low: 0
+                    high: 0,
+                    low: period.temperature
                   }
                 ];
               } else {
-                return acc.map((item, itemIndex) => (itemIndex === acc.length - 1 ? { ...item, low: period.temperature } : item));
+                return acc.map((item, itemIndex) => (itemIndex === acc.length - 1 ? { ...item, high: period.temperature } : item));
               }
             },
             [...highLow]
@@ -67,7 +67,7 @@ const WeatherBanner = ({ location = lc_locations.plv, coordinates = lc_coordinat
     return (
       <div
         key={index}
-        className={`h-full w-2/6 ml-2 mr-2 flex flex-col items-center rounded-md ${index % 2 === 0 ? 'bg-blue-600' : 'bg-blue-500'}`}
+        className={`h-full w-2/6 ml-2 mr-2 text-center p-1 flex flex-col items-center rounded-md ${index % 2 === 0 ? 'bg-blue-600' : 'bg-blue-500'}`}
       >
         <Text classNameProps='font-bold text-sm' content={period.name} />
         <Text classNameProps='text-sm line-clamp-1' content={period.shortForecast} />
