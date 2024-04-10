@@ -1,0 +1,13 @@
+# Directories
+node_modules/
+dist/
+build/
+coverage/
+
+# Files
+*.log
+*.lock
+*.swp
+*.tmp
+*.bak
+*.DS_Store

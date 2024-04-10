@@ -1,5 +1,5 @@
 export interface titleProps {
-  location?: string;
-  coordinates?: string;
-  weather_banner?: boolean;
+    location?: string;
+    coordinates?: string;
+    weather_banner?: boolean;
 }

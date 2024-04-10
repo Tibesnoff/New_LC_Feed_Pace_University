@@ -1,3 +1,3 @@
 export interface YoutubePlayerType {
-  videoId: string;
+    videoId: string;
 }
