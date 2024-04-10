@@ -40,10 +40,12 @@ const WeatherBanner = ({
                     classNameProps="font-bold text-sm"
                     content={period.name}
                 />
-                <Text
-                    classNameProps="text-sm line-clamp-1"
-                    content={period.shortForecast}
-                />
+                <div className='w-full h-full p-1 text-center'>
+                    <Text
+                        classNameProps="text-sm line-clamp-1"
+                        content={period.shortForecast}
+                    />
+                </div>
                 <div className="flex flex-row space-x-3">
                     <Text
                         classNameProps="text-sm"
