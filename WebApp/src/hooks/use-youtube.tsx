@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useYoutube = () => {
     const url = process.env.REACT_APP_YOUTUBE_LINK;
@@ -20,6 +20,6 @@ const useYoutube = () => {
     }, [url]);
 
     return { youTubeLink };
-}
+};
 
 export default useYoutube;

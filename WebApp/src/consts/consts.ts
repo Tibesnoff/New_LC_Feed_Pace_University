@@ -5,5 +5,5 @@ export const lc_locations = {
 
 export const lc_coordinates = {
     plv: '41.12091997761644,-73.81694739810774',
-    nyc: '40.7113, -74.0052',
+    nyc: '40.7113,-74.0052',
 };

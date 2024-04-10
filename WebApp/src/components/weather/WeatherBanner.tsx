@@ -40,7 +40,7 @@ const WeatherBanner = ({
                     classNameProps="font-bold text-sm"
                     content={period.name}
                 />
-                <div className='w-full h-full p-1 text-center'>
+                <div className="w-full h-full p-1 text-center">
                     <Text
                         classNameProps="text-sm line-clamp-1"
                         content={period.shortForecast}
@@ -102,14 +102,12 @@ const WeatherBanner = ({
     return (
         <div className="h-30 mt-2 flex flex-col bg-blue-900 p-2 pt-0 items-center rounded-md">
             {titles()}
-            {loading ? (
+            {loading ?
                 <Text
                     classNameProps="text-2xl text-center"
                     content="Loading Weather Data..."
                 />
-            ) : (
-                forcast()
-            )}
+            :   forcast()}
         </div>
     );
 };

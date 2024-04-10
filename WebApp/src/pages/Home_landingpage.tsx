@@ -30,7 +30,7 @@ const Home = () => {
                     </Link>
                     <Link to="/plv" className="h-full w-1/2">
                         <img
-                            alt='Pace PLV Campus'
+                            alt="Pace PLV Campus"
                             src={Pace_PLV}
                             style={{
                                 width: '100%',

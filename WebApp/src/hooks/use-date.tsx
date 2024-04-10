@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 const useDate = () => {
     const [currentDate, setCurrentDate] = useState('');
@@ -44,6 +44,6 @@ const useDate = () => {
     }, [updateCurrentTime]);
 
     return { currentDate, currentTime };
-}
+};
 
 export default useDate;

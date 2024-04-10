@@ -44,7 +44,7 @@ const useWeatherData = (coordinates: string) => {
             await fetch(link).then(async (r) => {
                 if (!r.ok) throw new Error('Error fetching data');
                 const { properties } = await r.json();
-                setHighLow(prevHighLow => {
+                setHighLow((prevHighLow) => {
                     const newHighLow = properties.periods.reduce(
                         (acc: Period[], period: Period, index: number) => {
                             const isEvenIndex = index % 2 === 0;
@@ -61,7 +61,7 @@ const useWeatherData = (coordinates: string) => {
                                 return acc.map((item, itemIndex) =>
                                     itemIndex === acc.length - 1 ?
                                         { ...item, low: period.temperature }
-                                        : item,
+                                    :   item,
                                 );
                             }
                         },
@@ -71,14 +71,16 @@ const useWeatherData = (coordinates: string) => {
                 });
                 setWeatherData({
                     updateTime: properties.updateTime,
-                    periods: properties.periods.map((period: Period) => ({
-                        number: period.number,
-                        name: period.name,
-                        startTime: period.startTime,
-                        detailedForecast: period.detailedForecast,
-                        temperature: period.temperature,
-                        shortForecast: period.shortForecast,
-                    })).filter((period: Period) => period.number % 2 !== 0),
+                    periods: properties.periods
+                        .map((period: Period) => ({
+                            number: period.number,
+                            name: period.name,
+                            startTime: period.startTime,
+                            detailedForecast: period.detailedForecast,
+                            temperature: period.temperature,
+                            shortForecast: period.shortForecast,
+                        }))
+                        .filter((period: Period) => period.number % 2 !== 0),
                 });
             });
         } catch (error) {
